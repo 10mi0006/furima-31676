@@ -9,7 +9,7 @@
 |last_name|String|null: false|
 |first_name_kana|String|null: false|
 |last_name_kana|String|null: false|
-|birthday|String|null: false|
+|birthday|date|null: false|
 
 ### Association
 - has_many :items
