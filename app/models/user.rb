@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+<<<<<<< Updated upstream
 
 
          with_options presence: true do
@@ -14,4 +15,6 @@ class User < ApplicationRecord
           validates :first_name_kana,        format: {with: /\A[ァ-ヶー－]+\z/ } 
           validates :birthday
          end
+=======
+>>>>>>> Stashed changes
 end
