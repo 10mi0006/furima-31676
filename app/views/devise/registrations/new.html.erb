@@ -1,8 +1,8 @@
-<<<<<<< Updated upstream
+
 <%= render "shared/second-header"%>
 
 <%# 「モデル名」にはUserモデルであれば@userを渡しましょう。「新規登録機能へのパス」は、devise導入後にrails routesを実行してdevise/registrations#createへのパスを確認し、記載してください。 %>
-<%= form_with model: モデル名, url: 新規登録機能へのパス, class: 'registration-main', local: true do |f| %>
+<%= form_with model: @user, url: user_registration_path, class: 'registration-main', local: true do |f| %>
 <%# //「モデル名」にはUserモデルであれば@userを渡しましょう。「新規登録機能へのパス」は、devise導入後にrails routesを実行してdevise/registrations#createへのパスを確認し、記載してください。 %>
 <div class='form-wrap'>
   <div class='form-header'>
@@ -107,7 +107,7 @@
 <% end %>
 
 <%= render "shared/second-footer"%>
-=======
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -137,4 +137,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
->>>>>>> Stashed changes
+
