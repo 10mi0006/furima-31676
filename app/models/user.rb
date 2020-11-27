@@ -3,26 +3,18 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+<<<<<<< Updated upstream
 
 
          with_options presence: true do
           validates :nickname
+          validates :encrypted_password,     length: { minimum: 6 } 
+          validates :last_name,              format: {with: /\A[ぁ-んァ-ン一-龥]/ } 
+          validates :last_name_kana,         format: {with: /\A[ァ-ヶー－]+\z/ } 
+          validates :first_name,             format: {with: /\A[ぁ-んァ-ン一-龥]/ } 
+          validates :first_name_kana,        format: {with: /\A[ァ-ヶー－]+\z/ } 
           validates :birthday
-          validates :email,    uniqueness: {case_sensitive: false},
-                               format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}
-          validates :password, length: {minimum: 6}
-          validates :encrypted_password, length: {minimum: 6}
-      
-          with_options format: {with: /\A[ぁ-んァ-ン一-龥]/ } do
-            validates :first_name
-            validates :last_name
-          end
-      
-          with_options format: {with: /\A[ァ-ヶー－]+\z/} do
-            validates :first_name_kana
-            validates :last_name_kana
-          end
-        end
-      end
-      
-      
+         end
+=======
+>>>>>>> Stashed changes
+end
