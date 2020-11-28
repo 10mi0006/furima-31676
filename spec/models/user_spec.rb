@@ -78,25 +78,20 @@ describe User do
 
       # パスワードの文字数テスト ▼
 
-      it "passwordが6文字以上であれば登録できること" do
-        @user = FactoryBot.build(:user, password: "1234abc", password_confirmation: "1234abc")
-        expect(@user).to be_valid
-      end
-
       it "passwordが5文字以下であれば登録できないこと" do
-        @user = FactoryBot.build(:user, password: "12345", password_confirmation: "12345")
-        @user.valid?
+        @user.password = ""
+        @user.valid? 
         expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
       end
 
       it "passwordが数字のみだと登録できないこと" do
-        @user = FactoryBot.build(:user, password: "1234567", password_confirmation: "1234567")
+        @user.password = ""
         @user.valid?
         expect(@user.errors.full_messages).to include "Password is invalid"
       end
 
       it "passwordが英字のみだと登録できないこと" do
-        @user = FactoryBot.build(:user, password: "abcdefg", password_confirmation: "abcdefg")
+        @user.password = ""
         @user.valid?
         expect(@user.errors.full_messages).to include "Password is invalid"
       end
@@ -122,13 +117,13 @@ describe User do
       # 本人確認名前全角入力のテスト ▼
 
       it 'last_nameが全角入力でなければ登録できないこと' do
-        @user = FactoryBot.build(:user, last_name: "ｱｲｳｴｵ")
+        @user.last_name = ""
         @user.valid?
         expect(@user.errors.full_messages).to include "Last name is invalid"
       end
 
       it 'first_nameが全角入力でなければ登録できないこと' do
-        @user = FactoryBot.build(:user, first_name: "ｱｲｳｴｵ")
+        @user.first_name = ""
         @user.valid?
         expect(@user.errors[:first_name]).to include("is invalid")
       end
@@ -136,13 +131,13 @@ describe User do
       # 本人確認カタカナ全角入力のテスト ▼
 
       it 'last_name_kanaが全角カタカナでなければ登録できないこと' do
-        @user = FactoryBot.build(:user, last_name_kana: "あいうえお")
+        @user.last_name_kana = ""
         @user.valid?
         expect(@user.errors[:last_name_kana]).to include("is invalid")
       end
 
       it 'first_name_kanaが全角カタカナでなければ登録できないこと' do
-        @user = FactoryBot.build(:user, first_name_kana: "あいうえお")
+        @user.first_name_kana = ""
         @user.valid?
         expect(@user.errors[:first_name_kana]).to include("is invalid")
 
