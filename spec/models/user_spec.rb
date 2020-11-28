@@ -22,64 +22,83 @@ describe User do
       end
 
       it "emailがない場合は登録できないこと" do
-        @user = FactoryBot.build(:user, email: nil)
+        @user.email = ""
         @user.valid?
         expect(@user.errors.full_messages).to include "Email can't be blank"
       end
 
       it "passwordがない場合は登録できないこと" do
-        @user = FactoryBot.build(:user, password: nil)
+        @user.password = ""
         @user.valid?
         expect(@user.errors.full_messages).to include "Password can't be blank"
       end
 
-      it "encrypted_passwordがない場合は登録できないこと" do
-        @user = FactoryBot.build(:user, encrypted_password: nil)
+      it "password_confirmationがない場合は登録できないこと" do
+        @user.password_confirmation = ""
         @user.valid?
-        expect(@user.errors.full_messages).to include "Encrypted password can't be blank"
+        expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
       end
 
       it "last_nameがない場合は登録できないこと" do
-        @user = FactoryBot.build(:user, last_name: nil)
+        @user.last_name = ""
         @user.valid?
         expect(@user.errors.full_messages).to include "Last name can't be blank"
       end
 
       it "last_name_kanaがない場合は登録できないこと" do
-        @user = FactoryBot.build(:user, last_name_kana: nil)
+        @user.last_name_kana = ""
         @user.valid?
         expect(@user.errors.full_messages).to include "Last name kana can't be blank"
       end
 
       it "first_nameがない場合は登録できないこと" do
-        @user = FactoryBot.build(:user, first_name: nil)
+        @user.first_name = ""
         @user.valid?
         expect(@user.errors.full_messages).to include "First name can't be blank"
       end
 
       it "first_name_kanaがない場合は登録できないこと" do
-        @user = FactoryBot.build(:user, first_name_kana: nil)
+        @user.first_name_kana = ""
         @user.valid?
         expect(@user.errors.full_messages).to include "First name kana can't be blank"
       end
 
       it "birthdayがない場合は登録できないこと" do
-        @user = FactoryBot.build(:user, birthday: nil)
+        @user.birthday = ""
         @user.valid?
         expect(@user.errors.full_messages).to include "Birthday can't be blank"
       end
 
+      it "@がない場合は登録できないこと" do
+        @user.email = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Email can't be blank", "Email is invalid"
+      end
+
+
       # パスワードの文字数テスト ▼
 
       it "passwordが6文字以上であれば登録できること" do
-        @user = FactoryBot.build(:user, password: "123456", encrypted_password: "123456")
+        @user = FactoryBot.build(:user, password: "1234abc", password_confirmation: "1234abc")
         expect(@user).to be_valid
       end
 
       it "passwordが5文字以下であれば登録できないこと" do
-        @user = FactoryBot.build(:user, password: "12345", encrypted_password: "12345")
+        @user = FactoryBot.build(:user, password: "12345", password_confirmation: "12345")
         @user.valid?
         expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
+      end
+
+      it "passwordが数字のみだと登録できないこと" do
+        @user = FactoryBot.build(:user, password: "1234567", password_confirmation: "1234567")
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password is invalid"
+      end
+
+      it "passwordが英字のみだと登録できないこと" do
+        @user = FactoryBot.build(:user, password: "abcdefg", password_confirmation: "abcdefg")
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password is invalid"
       end
 
       # email 一意性制約のテスト ▼
