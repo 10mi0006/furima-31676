@@ -79,19 +79,19 @@ describe User do
       # パスワードの文字数テスト ▼
 
       it "passwordが5文字以下であれば登録できないこと" do
-        @user.password = ""
+        @user.password = "1"
         @user.valid? 
         expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
       end
 
       it "passwordが数字のみだと登録できないこと" do
-        @user.password = ""
+        @user.password = "11"
         @user.valid?
         expect(@user.errors.full_messages).to include "Password is invalid"
       end
 
       it "passwordが英字のみだと登録できないこと" do
-        @user.password = ""
+        @user.password = "aa"
         @user.valid?
         expect(@user.errors.full_messages).to include "Password is invalid"
       end
@@ -117,13 +117,13 @@ describe User do
       # 本人確認名前全角入力のテスト ▼
 
       it 'last_nameが全角入力でなければ登録できないこと' do
-        @user.last_name = ""
+        @user.last_name = "a"
         @user.valid?
         expect(@user.errors.full_messages).to include "Last name is invalid"
       end
 
       it 'first_nameが全角入力でなければ登録できないこと' do
-        @user.first_name = ""
+        @user.first_name = "a"
         @user.valid?
         expect(@user.errors[:first_name]).to include("is invalid")
       end
@@ -131,13 +131,13 @@ describe User do
       # 本人確認カタカナ全角入力のテスト ▼
 
       it 'last_name_kanaが全角カタカナでなければ登録できないこと' do
-        @user.last_name_kana = ""
+        @user.last_name_kana = "a"
         @user.valid?
         expect(@user.errors[:last_name_kana]).to include("is invalid")
       end
 
       it 'first_name_kanaが全角カタカナでなければ登録できないこと' do
-        @user.first_name_kana = ""
+        @user.first_name_kana = "a"
         @user.valid?
         expect(@user.errors[:first_name_kana]).to include("is invalid")
 
