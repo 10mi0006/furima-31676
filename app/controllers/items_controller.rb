@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
         redirect_to root_path, notice: "出品しました" 
       else
         render :new
-      flash[:notice] = "出品に失敗しました" 
+        flash[:notice] = "出品に失敗しました" 
       end
   end
 

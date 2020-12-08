@@ -12,6 +12,5 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer    :price,                  null: false
       t.timestamps
     end
-    # add_foreign_key :items, :users, column: :user_id
   end
 end
