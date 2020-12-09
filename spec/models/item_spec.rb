@@ -74,15 +74,15 @@ describe Item do
 
   describe '#create' do
     it "priceが299円以下だと登録できない" do
-     @item.shipping_days_id = 1
+     @item.price = 1
      @item.valid?
      expect(@item.errors.full_messages).to include "Price is out of setting range"
     end
   end
 
   describe '#create' do
-    it "priceが10000000以上だと登録できない" do
-     @item.shipping_days_id = 10000001
+    it "priceが9999999以上だと登録できない" do
+     @item.price = 10000000
      @item.valid?
      expect(@item.errors.full_messages).to include "Price is out of setting range"
     end
