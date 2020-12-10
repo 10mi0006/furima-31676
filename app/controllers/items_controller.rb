@@ -30,14 +30,14 @@ class ItemsController < ApplicationController
     #redirect_to root_path unless current_user == @item.user
   #end
 
-  def update
-    @item = Item.find(params[:id])
-    if @item.update(item_params)
-      redirect_to items_path,notice: "変更しました" 
-    else
-      render :edit
-    end
-  end
+  #def update
+    #@item = Item.find(params[:id])
+   # if @item.update(item_params)
+    #  redirect_to items_path,notice: "変更しました" 
+    #else
+     # render :edit
+ #   end
+  #end
 
  # def destroy
    # if @item.destroy
