@@ -25,10 +25,10 @@ class ItemsController < ApplicationController
   def show
   end
 
-  def edit
-    @item = Item.find(params[:id])
-    redirect_to root_path unless current_user == @item.user
-  end
+  #def edit
+    #@item = Item.find(params[:id])
+    #redirect_to root_path unless current_user == @item.user
+  #end
 
   def update
     @item = Item.find(params[:id])
@@ -39,9 +39,15 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destroy
-    @items = Item.find(params[:id])
-  end
+ # def destroy
+   # if @item.destroy
+    #  flash[:notice] = "削除が完了しました"
+    #  redirect_to root_path
+    #else
+    #  flash[:alert] = "削除できませんでした"
+    #  render :show
+   # end
+  #end
 
   private
   def item_params
