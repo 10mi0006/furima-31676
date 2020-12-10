@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :delivery_fee
   belongs_to :shipment_address
-  belongs_to :shipping_day
+  belongs_to :shipping_days
   belongs_to :condition
 
   with_options presence: true do
