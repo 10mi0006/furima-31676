@@ -5,6 +5,7 @@ const pay = () => {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+  // フォーム送信時にイベントが発火するようにしましょう
 
     // フォームの情報を取得しましょう
     const formResult = document.getElementById("charge-form");
