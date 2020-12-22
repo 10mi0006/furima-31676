@@ -1,13 +1,13 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  has_one  :buy
-  belongs_to :user
   has_one_attached :image
   belongs_to :category
   belongs_to :delivery_fee
   belongs_to :shipment_address
   belongs_to :shipping_days
   belongs_to :condition
+  has_one  :buy
+  belongs_to :user
 
   with_options presence: true do
     validates :name                  
