@@ -5,8 +5,7 @@ class OrdersController < ApplicationController
   
   def index
     @order_form = OrderForm.new
-    redirect_to root_path if current_user.id ==  @item.user_id
-    redirect_to root_path if current_user.id == @item.buy&.user_id
+    redirect_to root_path if current_user.id == @item.user_id || @item.buy.present?
   end
 
   def new
