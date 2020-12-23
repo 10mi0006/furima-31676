@@ -8,9 +8,7 @@ class OrdersController < ApplicationController
     redirect_to root_path if current_user.id == @item.user_id || @item.buy.present?
   end
 
-  def new
-  end
-
+  
   def create
     @order_form = OrderForm.new(order_params)
     if @order_form.valid?

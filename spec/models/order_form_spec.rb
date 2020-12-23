@@ -8,9 +8,23 @@ describe  OrderForm do
   
   describe '#create' do
 
+    context '商品購入ができる時' do
+     
+    
     it "全ての項目の入力が存在すれば登録できること" do
       expect(@order_form).to be_valid
      end
+
+     it "建物名は空白でも登録できること" do
+      @order_form.house_number = ""
+      @order_form.valid?
+      expect(@order_form).to be_valid
+    end
+
+
+    end
+
+    context '商品購入ができない時' do
 
     it "郵便番号が空ならば、登録できないかテストする" do
       @order_form.postcode = ""
@@ -42,11 +56,7 @@ describe  OrderForm do
       expect(@order_form.errors.full_messages).to include "Address can't be blank" 
     end
 
-    it "建物名は空白でも登録できること" do
-      @order_form.house_number = ""
-      @order_form.valid?
-      expect(@order_form).to be_valid
-    end
+   
 
     it "電話番号が空ならば、登録できないかテストする" do
       @order_form.phone_number = ""
@@ -84,6 +94,8 @@ describe  OrderForm do
       @order_form.valid?
       expect(@order_form.errors.full_messages).to include "Postcode is invalid. Include hyphen(-)"
     end
+
+  end
 
   end
 end

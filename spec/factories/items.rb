@@ -8,7 +8,7 @@ FactoryBot.define do
     delivery_fee_id         {1}
     shipment_address_id     {46}
     shipping_days_id        {1}
-
+    item_id {Factory.create(:item)}
     association :user
 
   end 
