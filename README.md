@@ -38,7 +38,7 @@
 
 
 
-## addressテーブル
+## orderテーブル
 |Column|Type|Options|
 |------|----|-------|
 |buy_id|Integer|foreign_key: true|
@@ -62,7 +62,7 @@
 |user_id|Integer|foreign_key: true|
 
 ### Association
-- has_one:address
+- has_one:order
 - belongs_to :user
 - belongs_to :item
 

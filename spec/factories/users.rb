@@ -1,5 +1,5 @@
 FactoryBot.define do
-
+  
   factory :user do
     nickname              {"tarou"}
     email                 {"sample@gmail.com"}
@@ -10,5 +10,6 @@ FactoryBot.define do
     first_name            {"太郎"}
     first_name_kana       {"タロウ"}
     birthday              {"2000-01-01"}
+    user_id {Factory.create(:user)}
   end
 end

@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(created_at: :desc)
+    
 
   end
 
@@ -47,6 +48,10 @@ class ItemsController < ApplicationController
       render :show
     end
    end
+
+  
+   
+
 
   private
   def item_params
