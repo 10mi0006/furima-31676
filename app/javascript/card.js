@@ -18,12 +18,11 @@ const pay = () => {
       cvc: formData.get("order_form[cvc]"),
     // フォームの情報を取得しましょう
     };
-    console.log(card)
+   
 
 
   // カードの情報をトークン化しましょう
     Payjp.createToken(card, (status, response) => {
-      console.log(status)
 
       if (status == 200) {
         const token = response.id;

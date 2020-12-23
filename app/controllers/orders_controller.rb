@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create]
-  before_action :move_to_root_path, except: [:index], unless: :user_signed_in?
-
+  before_action :move_to_root_path, except: [:index]
+  before_action :item_find, only: [:index, :create]
+  
   def index
-    @item = Item.find(params[:item_id])
     @order_form = OrderForm.new
     redirect_to root_path if current_user.id ==  @item.user_id
     redirect_to root_path if current_user.id == @item.buy&.user_id
@@ -13,8 +13,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
-
     @order_form = OrderForm.new(order_params)
     if @order_form.valid?
       # 決済処理を移動
@@ -50,6 +48,10 @@ class OrdersController < ApplicationController
   def move_to_root_path
     redirect_to root_path 
     flash[:alert] = "購入するには新規登録、ログインが必要です"
+  end
+
+  def item_find
+  @item = Item.find(params[:item_id])
   end
 
 end

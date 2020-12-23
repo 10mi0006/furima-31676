@@ -54,5 +54,36 @@ describe  OrderForm do
       expect(@order_form.errors.full_messages).to include "Phone number can't be blank" 
     end
 
+    it "電話番号が12桁以上だと登録できない" do
+      @order_form.phone_number = "111111111111"
+      @order_form.valid?
+      expect(@order_form.errors.full_messages).to include "Phone number is invalid." 
+     end
+
+     it "電話番号にハイフンを含む場合は登録できない" do
+      @order_form.phone_number = "-"
+      @order_form.valid?
+      expect(@order_form.errors.full_messages).to include "Phone number is invalid." 
+     end
+ 
+
+    it "user_idが空ならば、登録できないかテストする" do
+      @order_form.user_id = ""
+      @order_form.valid?
+      expect(@order_form.errors.full_messages).to include "User can't be blank" 
+    end
+
+    it "item_idが空ならば、登録できないかテストする" do
+      @order_form.item_id = ""
+      @order_form.valid?
+      expect(@order_form.errors.full_messages).to include "Item can't be blank" 
+    end
+
+    it "-がない場合は登録できないこと" do
+      @order_form.postcode = "1111111"
+      @order_form.valid?
+      expect(@order_form.errors.full_messages).to include "Postcode is invalid. Include hyphen(-)"
+    end
+
   end
 end
